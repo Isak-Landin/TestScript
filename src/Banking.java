@@ -9,7 +9,7 @@ public class Banking extends Node{
     private static final int WALKING_ANIMATION = 1146; // Replace with the correct animation ID for walking
     private static final int RUNNING_ANIMATION = 11499; // Replace with the correct animation ID for running
 
-    private static final int[] ITEMS_FOR_SHRIMPS = 
+    private static final int[] ITEMS_FOR_SHRIMPS = {1111, 2222, 3333, 4444};
 
     @Override
     public boolean validate(){
