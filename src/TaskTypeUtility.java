@@ -46,7 +46,7 @@ public class TaskTypeUtility {
         }
         Logger.log(Color.RED, "This message showing means that when trying to determine the correct tools to withdraw; none of the cases were matched");
         Logger.log(Color.CYAN, myFishingTask);
-        return BankManagerSystem.SHRIMP_FISHING_TOOLS;
+        return SHRIMP_FISHING_TOOLS;
     }
 
     public enum FishingTask{
