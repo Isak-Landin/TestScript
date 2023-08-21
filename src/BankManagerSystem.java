@@ -3,7 +3,19 @@ import org.dreambot.api.wrappers.items.Item;
 public class BankManagerSystem {
 
 
-    public int[] WhatIsToBeWithdrawn(){
+    public static int[] WhatIsToBeWithdrawn(){
         int[] toolsToHave = TaskTypeUtility.CorrectToolsForTask();
+
+        int[] missingItems = WhatItemsAreMissingFromInventory(toolsToHave);
+
+        return new int[0];
+    }
+
+    public static int[] WhatIsToBeKept(){
+        return new int[0];
+    }
+
+    private static int[] WhatItemsAreMissingFromInventory(int[] toolsToHave){
+        return new int[0];
     }
 }

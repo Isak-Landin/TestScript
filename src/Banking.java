@@ -36,11 +36,8 @@ public class Banking extends Node{
 
     }
 
-    private void depositItems(int[] itemsToKeepInInventory){
-        if (Bank.isOpen()){
-            /* pass an integer list to the deposit, to decide which items not to deposit */
-            Bank.depositAllExcept(itemsToKeepInInventory);
-        }
+    private void depositItems(){
+            Bank.depositAllExcept(BankManagerSystem.WhatIsToBeKept());
     }
 
     private boolean isPlayerInBankingState() {
