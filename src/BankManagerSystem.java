@@ -1,4 +1,8 @@
+import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.wrappers.items.Item;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.Arrays;
 
 public class BankManagerSystem {
 
@@ -16,6 +20,27 @@ public class BankManagerSystem {
     }
 
     private static int[] WhatItemsAreMissingFromInventory(int[] toolsToHave){
-        return new int[0];
+        int[] itemsMissingFromInventory = new int[toolsToHave.length];
+
+        // Let's make item ids represent an item missing, and let's make 0's represent
+        // That way we won't have to indulge in extending or removing indexes from lists, since the max amount of items missing is toolsToHave.length
+        for (int j : toolsToHave) {
+            boolean itemIsInInventory = Inventory.contains(j);
+
+            if (!itemIsInInventory) {
+                int indexCounter = 0;
+                for (int i: itemsMissingFromInventory){
+                    if(i == 0){
+                        itemsMissingFromInventory[indexCounter] = j;
+                        indexCounter += 1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return itemsMissingFromInventory;
     }
+
+
 }
