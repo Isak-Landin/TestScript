@@ -17,27 +17,29 @@ public class Banking extends Node{
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         BankLocation nearest_bank = BankLocation.getNearest();
         Tile bankCenterTile = nearest_bank.getCenter();
         double maximumAllowedDistanceBeforeBanking = 5.0;
 
         boolean hasReachedBank = MovingUtility.GoToLocation(maximumAllowedDistanceBeforeBanking, bankCenterTile);
 
-        while (!isPlayerInBankingState()) {
-            Bank.open();
-            Sleep.sleep(1000, 2000);
-        }
+        if (hasReachedBank) {
+            while (!isPlayerInBankingState()) {
+                Bank.open();
+                Sleep.sleep(1000, 2000);
+            }
 
-        if (Bank.isOpen()) {
-            Sleep.sleep(500, 1200);
-            depositItems();
+            if (Bank.isOpen()) {
+                Sleep.sleep(500, 1200);
+                depositItems();
+            }
         }
 
     }
 
     private void depositItems(){
-            Bank.depositAllExcept(BankManagerSystem.WhatIsToBeKept());
+            Bank.depositAllExcept(TaskTypeUtility.CorrectToolsForTask());
     }
 
     private boolean isPlayerInBankingState() {

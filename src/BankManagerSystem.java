@@ -12,7 +12,7 @@ public class BankManagerSystem {
     }
 
     public static int[] WhatIsToBeKept(){
-        return new int[0];
+        return TaskTypeUtility.CorrectToolsForTask();
     }
 
     private static int[] WhatItemsAreMissingFromInventory(int[] toolsToHave){
