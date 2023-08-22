@@ -7,51 +7,45 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
 
 public class BankManagerSystem {
-    public static void withdrawBasedOnTaskMadeEasy() {
-        int[] toolsMissingFromInventory = WhatIsToBeWithdrawn();
 
-        do {
+    public static void withdrawBasedOnTaskMadeEasy() {
+        int[] toolsMissingFromInventory = getItemsToBeWithdrawn();
+
+        while (hasMissingItems(toolsMissingFromInventory)) {
             for (int itemID : toolsMissingFromInventory) {
                 if (itemID != 0) {
                     Bank.withdraw(itemID);
                     Sleep.sleep(100, 300);
                 }
             }
-            toolsMissingFromInventory = WhatIsToBeWithdrawn();
-        } while (OtherUtilityMethods.doesArrayContainOnlyInt(toolsMissingFromInventory, 0));
+            toolsMissingFromInventory = getItemsToBeWithdrawn();
+        }
     }
 
-    private static int[] WhatIsToBeWithdrawn(){
-        int[] toolsToHave = TaskTypeUtility.CorrectToolsForTask();
-
-        return WhatItemsAreMissingFromInventory(toolsToHave);
+    private static int[] getItemsToBeWithdrawn() {
+        int[] toolsToHave = TaskTypeUtility.correctToolsForTask();
+        return getMissingItemsFromInventory(toolsToHave);
     }
 
-    private static int[] WhatIsToBeKept(){
-        return TaskTypeUtility.CorrectToolsForTask();
-    }
-
-    private static int[] WhatItemsAreMissingFromInventory(int[] toolsToHave){
+    private static int[] getMissingItemsFromInventory(int[] toolsToHave) {
         int[] itemsMissingFromInventory = new int[toolsToHave.length];
 
-        // Let's make item ids represent an item missing, and let's make 0's represent
-        // That way we won't have to indulge in extending or removing indexes from lists, since the max amount of items missing is toolsToHave.length
-        for (int j : toolsToHave) {
-            boolean itemIsInInventory = Inventory.contains(j);
-
-            if (!itemIsInInventory) {
-                int indexCounter = 0;
-                for (int i: itemsMissingFromInventory){
-                    if(i == 0){
-                        itemsMissingFromInventory[indexCounter] = j;
-                        indexCounter += 1;
-                        break;
-                    }
-                }
+        int indexCounter = 0;
+        for (int toolID : toolsToHave) {
+            if (!Inventory.contains(toolID)) {
+                itemsMissingFromInventory[indexCounter++] = toolID;
             }
         }
 
         return itemsMissingFromInventory;
     }
 
+    private static boolean hasMissingItems(int[] items) {
+        for (int item : items) {
+            if (item != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
