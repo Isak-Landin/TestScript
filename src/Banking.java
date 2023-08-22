@@ -40,7 +40,7 @@ public class Banking extends Node{
     }
 
     private void depositItems(){
-            Bank.depositAllExcept(TaskTypeUtility.CorrectToolsForTask());
+            Bank.depositAllExcept(TaskTypeUtility.correctToolsForTask());
     }
 
     private boolean isPlayerInBankingState() {
