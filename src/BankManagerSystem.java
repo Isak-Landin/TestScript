@@ -7,13 +7,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
 
 public class BankManagerSystem {
-
-
     public static void withdrawBasedOnTaskMadeEasy() {
         int[] toolsToHave = WhatIsToBeKept();
         int[] toolsMissingFromInventory = WhatIsToBeWithdrawn();
 
         do {
+            toolsMissingFromInventory = WhatIsToBeWithdrawn();
             for (int itemID : toolsMissingFromInventory) {
                 if (itemID != 0) {
                     Bank.withdraw(itemID);
@@ -21,8 +20,7 @@ public class BankManagerSystem {
                 }
             }
             toolsMissingFromInventory = WhatIsToBeWithdrawn();
-        } while ()
-    }
+        } while (OtherUtilityMethods.doesArrayContainOnlyInt(toolsMissingFromInventory, 0));
     }
 
     private static int[] WhatIsToBeWithdrawn(){

@@ -33,6 +33,7 @@ public class Banking extends Node{
             if (Bank.isOpen()) {
                 Sleep.sleep(500, 1200);
                 depositItems();
+                BankManagerSystem.withdrawBasedOnTaskMadeEasy();
             }
         }
 
