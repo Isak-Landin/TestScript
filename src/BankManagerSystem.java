@@ -1,4 +1,6 @@
 import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.container.impl.bank.Bank;
+import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.Item;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -7,15 +9,29 @@ import java.util.Arrays;
 public class BankManagerSystem {
 
 
-    public static int[] WhatIsToBeWithdrawn(){
-        int[] toolsToHave = TaskTypeUtility.CorrectToolsForTask();
+    public static void withdrawBasedOnTaskMadeEasy() {
+        int[] toolsToHave = WhatIsToBeKept();
+        int[] toolsMissingFromInventory = WhatIsToBeWithdrawn();
 
-        int[] missingItems = WhatItemsAreMissingFromInventory(toolsToHave);
-
-        return new int[0];
+        do {
+            for (int itemID : toolsMissingFromInventory) {
+                if (itemID != 0) {
+                    Bank.withdraw(itemID);
+                    Sleep.sleep(100, 300);
+                }
+            }
+            toolsMissingFromInventory = WhatIsToBeWithdrawn();
+        } while ()
+    }
     }
 
-    public static int[] WhatIsToBeKept(){
+    private static int[] WhatIsToBeWithdrawn(){
+        int[] toolsToHave = TaskTypeUtility.CorrectToolsForTask();
+
+        return WhatItemsAreMissingFromInventory(toolsToHave);
+    }
+
+    private static int[] WhatIsToBeKept(){
         return TaskTypeUtility.CorrectToolsForTask();
     }
 
@@ -41,6 +57,5 @@ public class BankManagerSystem {
 
         return itemsMissingFromInventory;
     }
-
 
 }
