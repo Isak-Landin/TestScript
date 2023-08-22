@@ -74,7 +74,27 @@ public class TaskTypeUtility {
         HERRING,
         TROUT,
         SALMON
+    }
 
+    private static boolean willItBurn(FishingTask _fishing_task){
+        switch (_fishing_task){
+            case SHRIMPS -> {
+                return !STOP_BURNING_SHRIMP.meetsRequirement();
+            }
+            case SARDINE -> {
+                return !STOP_BURNING_SARDINE.meetsRequirement();
+            }
+            case HERRING -> {
+                return !STOP_BURNING_HERRING.meetsRequirement();
+            }
+            case TROUT -> {
+                return !STOP_BURNING_TROUT.meetsRequirement();
+            }
+            case SALMON -> {
+                return !STOP_BURNING_SALMON.meetsRequirement();
+            }
+        }
+        return false;
     }
 
     private static int myFishingLevel(){
