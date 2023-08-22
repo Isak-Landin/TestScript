@@ -30,7 +30,7 @@ public class TaskTypeUtility {
         }
     }
 
-    public static int[] CorrectToolsForTask(){
+    public static int[] correctToolsForTask(){
         TaskTypeUtility.FishingTask myFishingTask = TaskTypeUtility.DecideTaskType();
 
         switch (myFishingTask) {
