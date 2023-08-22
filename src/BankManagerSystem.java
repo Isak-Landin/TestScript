@@ -8,11 +8,9 @@ import java.util.Arrays;
 
 public class BankManagerSystem {
     public static void withdrawBasedOnTaskMadeEasy() {
-        int[] toolsToHave = WhatIsToBeKept();
         int[] toolsMissingFromInventory = WhatIsToBeWithdrawn();
 
         do {
-            toolsMissingFromInventory = WhatIsToBeWithdrawn();
             for (int itemID : toolsMissingFromInventory) {
                 if (itemID != 0) {
                     Bank.withdraw(itemID);
