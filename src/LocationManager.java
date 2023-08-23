@@ -37,5 +37,9 @@ public class LocationManager {
         return OVER_LEVELED_LOCATION;
     }
 
+    public static Tile decideWhereToBank(){
+
+    }
+
 
 }
