@@ -1,8 +1,12 @@
+import org.dreambot.api.methods.container.impl.Inventory;
+
 public class Fishing extends Node{
     @Override
     public boolean validate(){
-        boolean toReturn = true;
-        return Inventory.isFull();
+        if (!Inventory.isFull()){
+            double allowedDistanceFromFishingSpot =
+            MovingUtility.GoToLocation()
+        }
     }
 
     @Override
