@@ -7,6 +7,7 @@ public class LocationManager {
     private static final Tile HERRING_LOCATION = new Tile();
     private static final Tile TROUT_LOCATION = new Tile();
     private static final Tile SALMON_LOCATION = new Tile();
+    private static final Tile OVER_LEVELED_LOCATION = new Tile();
     private static final Tile BANK_SHRIMP_LOCATION = new Tile();
     private static final Tile BANK_SARDINE_LOCATION = new Tile();
     private static final Tile BANK_HERRING_LOCATION = new Tile();
@@ -15,7 +16,7 @@ public class LocationManager {
 
 
     public static Tile decideWhereToFish(){
-        TaskTypeUtility.FishingTask fishingTask = TaskTypeUtility.DecideTaskType();
+        TaskTypeUtility.FishingTask fishingTask = TaskTypeUtility.decideTaskType();
         switch (fishingTask){
             case SHRIMPS -> {
                 return SHRIMP_LOCATION;
@@ -26,6 +27,15 @@ public class LocationManager {
             case HERRING -> {
                 return HERRING_LOCATION;
             }
+            case TROUT -> {
+                return TROUT_LOCATION;
+            }
+            case SALMON -> {
+                return SALMON_LOCATION;
+            }
         }
+        return OVER_LEVELED_LOCATION;
     }
+
+
 }
