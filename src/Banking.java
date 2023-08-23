@@ -18,11 +18,12 @@ public class Banking extends Node{
 
     @Override
     public void execute() {
-        BankLocation nearest_bank = BankLocation.getNearest();
-        Tile bankCenterTile = nearest_bank.getCenter();
+
+        Tile bankCenterTile = LocationManager.decideWhereToBank();
         double maximumAllowedDistanceBeforeBanking = 5.0;
 
         boolean hasReachedBank = MovingUtility.GoToLocation(maximumAllowedDistanceBeforeBanking, bankCenterTile);
+
 
         if (hasReachedBank) {
             while (!isPlayerInBankingState()) {
