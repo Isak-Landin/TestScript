@@ -4,8 +4,8 @@ public class Fishing extends Node{
     @Override
     public boolean validate(){
         if (!Inventory.isFull()){
-            double allowedDistanceFromFishingSpot =
-            MovingUtility.GoToLocation()
+            double allowedDistanceFromFishingSpot = AllowedDistanceForLocationData.maximumAllowedDistanceForFishingTask();
+            MovingUtility.GoToLocation();
         }
     }
 
