@@ -7,8 +7,7 @@ public class LocationManager {
     private static final Tile SHRIMP_LOCATION = new Tile();
     private static final Tile SARDINE_LOCATION = new Tile();
     private static final Tile HERRING_LOCATION = new Tile();
-    private static final Tile TROUT_LOCATION = new Tile();
-    private static final Tile SALMON_LOCATION = new Tile();
+    private static final Tile SALMON_AND_TROUT_LOCATION = new Tile();
     private static final Tile OVER_LEVELED_LOCATION = new Tile();
     private static final Tile BANK_SHRIMP_LOCATION = new Tile();
     private static final Tile BANK_SARDINE_LOCATION = new Tile();
@@ -29,11 +28,8 @@ public class LocationManager {
             case HERRING -> {
                 return HERRING_LOCATION;
             }
-            case TROUT -> {
-                return TROUT_LOCATION;
-            }
-            case SALMON -> {
-                return SALMON_LOCATION;
+            case SALMONANDTROUT -> {
+                return SALMON_AND_TROUT_LOCATION;
             }
         }
         return OVER_LEVELED_LOCATION;
