@@ -36,6 +36,7 @@ public class TaskTypeUtility {
     private static final int[] SARDINE_FISHING_TOOLS = TaskRelatedItemIDs.SardineTools;
     private static final int[] HERRING_FISHING_TOOLS = TaskRelatedItemIDs.HerringTools;
     private static final int[] SALMON_AND_TROUT_FISHING_TOOLS = TaskRelatedItemIDs.TroutTools;
+    private static final int[] NO_TOOLS = TaskRelatedItemIDs.NoTools;
 
 
     public static FishingTask decideTaskType() {
@@ -51,24 +52,13 @@ public class TaskTypeUtility {
     public static int[] correctToolsForTask(){
         TaskTypeUtility.FishingTask myFishingTask = TaskTypeUtility.decideTaskType();
 
-        switch (myFishingTask) {
-            case SHRIMPS -> {
-                return SHRIMP_FISHING_TOOLS;
-            }
-            case SARDINE -> {
-                return SARDINE_FISHING_TOOLS;
-            }
-            case HERRING -> {
-                return HERRING_FISHING_TOOLS;
-            }
-            case SALMONANDTROUT -> {
-                return SALMON_AND_TROUT_FISHING_TOOLS;
-            }
-
-        }
-        Logger.log(Color.RED, "This message showing means that when trying to determine the correct tools to withdraw; none of the cases were matched");
-        Logger.log(Color.CYAN, myFishingTask);
-        return SHRIMP_FISHING_TOOLS;
+        return switch (TaskTypeUtility.decideTaskType()) {
+            case SHRIMPS -> SHRIMP_FISHING_TOOLS;
+            case SARDINE -> SARDINE_FISHING_TOOLS;
+            case HERRING -> HERRING_FISHING_TOOLS;
+            case SALMONANDTROUT -> SALMON_AND_TROUT_FISHING_TOOLS;
+            default -> NO_TOOLS;
+        };
     }
 
     public enum FishingTask{
