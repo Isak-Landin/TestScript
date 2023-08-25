@@ -4,6 +4,7 @@ public class AllowedDistanceForLocationData {
     private static final double allowedDistanceFromSardineTile = 15;
     private static final double allowedDistanceFromHerringTile = 15;
     private static final double allowedDistanceFromSalmonAndTroutTile = 15;
+    private static final double allowedDistanceFromGeneralFishingSpot = 15;
 
 
     public static double maximumAllowedDistanceForFishingTask(TaskTypeUtility.FishingTask myFishingTask){
@@ -21,5 +22,6 @@ public class AllowedDistanceForLocationData {
                 return allowedDistanceFromSalmonAndTroutTile;
             }
         }
+        return allowedDistanceFromGeneralFishingSpot;
     }
 }
