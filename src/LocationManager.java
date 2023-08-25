@@ -17,34 +17,27 @@ public class LocationManager {
 
 
     public static Tile decideWhereToFish(){
-        TaskTypeUtility.FishingTask fishingTask = TaskTypeUtility.decideTaskType();
-        switch (fishingTask){
-            case SHRIMPS -> {
-                return SHRIMP_LOCATION;
-            }
-            case SARDINE -> {
-                return SARDINE_LOCATION;
-            }
-            case HERRING -> {
-                return HERRING_LOCATION;
-            }
-            case SALMONANDTROUT -> {
-                return SALMON_AND_TROUT_LOCATION;
-            }
-        }
-        return OVER_LEVELED_LOCATION;
+        return switch (TaskTypeUtility.decideTaskType()) {
+            case SHRIMPS -> SHRIMP_LOCATION;
+            case SARDINE -> SARDINE_LOCATION;
+            case HERRING -> HERRING_LOCATION;
+            case SALMONANDTROUT -> SALMON_AND_TROUT_LOCATION;
+            default -> OVER_LEVELED_LOCATION;
+        };
     }
 
     public static Tile decideWhereToBank(){
-        Tile[] allBankLocations = {BANK_SHRIMP_LOCATION, BANK_SARDINE_LOCATION, BANK_HERRING_LOCATION, BANK_TROUT_LOCATION, BANK_SALMON_LOCATION};
-        double[] distances = {0, 0, 0, 0, 0};
+        Tile[] allBankLocations = {
+                BANK_SHRIMP_LOCATION, BANK_SARDINE_LOCATION,
+                BANK_HERRING_LOCATION, BANK_TROUT_LOCATION,
+                BANK_SALMON_LOCATION
+        };
 
-        int indexCounter = 0;
-        for (Tile bankTile: allBankLocations){
-            distances[indexCounter++] = bankTile.distance();
-        }
+        double[] distances = Arrays.stream(allBankLocations)
+                .mapToDouble(Tile::distance)
+                .toArray();
 
-        int minIndex = 0; // Start with the assumption that the 0th element is the smallest
+        int minIndex = 0;
         for (int i = 1; i < distances.length; i++) {
             if (distances[i] < distances[minIndex]) {
                 minIndex = i;
