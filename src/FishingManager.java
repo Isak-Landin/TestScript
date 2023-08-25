@@ -1,9 +1,15 @@
+import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
+import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.wrappers.interactive.NPC;
+import org.dreambot.api.methods.filter.Filter;
+
 
 public class FishingManager {
     private static final int animationForFishing = 1111;
-    public static double getClosestFishingSpotOnLocation(){
-
+    public static double getClosestFishingSpotOnLocation(Tile taskRelatedTile){
+        Filter<NPC> fishingSpotFilter = npc -> npc.getName().equals("Fishing spot");
+        NPC fishingSpot = NPCs.closest(fishingSpotFilter, taskRelatedTile, true);
     }
 
     public static boolean isCurrentlyFishing(){
