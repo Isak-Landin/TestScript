@@ -1,3 +1,4 @@
+import java.util.Random;
 public class OtherUtilityMethods {
     public static boolean doesArrayContainInt(int[] array_of_ints, int int_to_look_for){
         for (int intForIndex: array_of_ints){
@@ -15,5 +16,9 @@ public class OtherUtilityMethods {
             }
         }
         return true;
+    }
+
+    public static int customRandomInt(){
+        return new Random().nextInt(0, 10);
     }
 }
