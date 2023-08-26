@@ -26,6 +26,17 @@ public class BankManagerSystem {
         return !hasMissingItems(getItemsToBeWithdrawn());
     }
 
+    public static void checkForDuplicatesAndDepositThem(){
+        int[] correctsTools = TaskTypeUtility.correctToolsForTask();
+
+        for (int tool: correctsTools){
+            int howManyOfOneTool = Inventory.count(tool);
+            if (howManyOfOneTool > 1){
+                Bank.deposit(tool, howManyOfOneTool - 1);
+            }
+        }
+    }
+
     private static int[] getItemsToBeWithdrawn() {
         int[] toolsToHave = TaskTypeUtility.correctToolsForTask();
         return getMissingItemsFromInventory(toolsToHave);
