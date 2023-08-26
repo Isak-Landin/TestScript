@@ -5,6 +5,8 @@ import org.dreambot.api.methods.walking.impl.Walking;
 import java.util.Random;
 
 public class MovingUtility{
+    private static Tile lastClickedTile = Players.getLocal().getTile();
+    private static long lastSecondClicked = 0L;
     private static double distance(Tile tile){
         return Players.getLocal().distance(tile);
     }
@@ -27,7 +29,12 @@ public class MovingUtility{
     }
 
     private static void moveTowardsLocation(Tile tile){
-        Walking.walk(tile);
+        if (Players.getLocal().distance(lastClickedTile) <= OtherUtilityMethods.customRandomInt() && tile.distance() > 5 && System.currentTimeMillis() / 1000L - lastSecondClicked > 1) {
+            Tile tileClosestRightNow = Walking.getClosestTileOnMap(tile);
+            Walking.walk(tileClosestRightNow);
+            lastClickedTile = tileClosestRightNow;
+            lastSecondClicked = System.currentTimeMillis() / 1000L;
+        }
     }
 
     private static void toggleRun(){
