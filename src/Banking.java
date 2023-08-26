@@ -26,7 +26,7 @@ public class Banking extends Node{
 
 
         if (hasReachedBank) {
-            while (!isPlayerInBankingState()) {
+            while (!isPlayerInBankingState() && !Bank.isOpen()) {
                 Bank.open();
                 Sleep.sleep(1000, 2000);
             }
