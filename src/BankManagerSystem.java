@@ -22,6 +22,10 @@ public class BankManagerSystem {
         }
     }
 
+    public static boolean allTaskRelatedToolsInInventory(){
+        return !hasMissingItems(getItemsToBeWithdrawn());
+    }
+
     private static int[] getItemsToBeWithdrawn() {
         int[] toolsToHave = TaskTypeUtility.correctToolsForTask();
         return getMissingItemsFromInventory(toolsToHave);
