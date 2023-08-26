@@ -3,14 +3,13 @@ import org.dreambot.api.methods.container.impl.Inventory;
 public class Fishing extends Node{
     @Override
     public boolean validate(){
-        if (!Inventory.isFull()){
-            double allowedDistanceFromFishingSpot = AllowedDistanceForLocationData.maximumAllowedDistanceForFishingTask();
-            MovingUtility.GoToLocation();
-        }
+        return !Inventory.isFull() && BankManagerSystem.allTaskRelatedToolsInInventory();
     }
 
     @Override
     public void execute(){
+        double allowedDistanceFromFishingSpot = AllowedDistanceForLocationData.maximumAllowedDistanceForFishingTask(TaskTypeUtility.decideTaskType());
+        MovingUtility.GoToLocation(allowedDistanceFromFishingSpot, LocationManager.decideWhereToFish());
 
     }
 }
