@@ -20,9 +20,8 @@ public class Banking extends Node{
     public void execute() {
 
         Tile bankCenterTile = LocationManager.decideWhereToBank();
-        double maximumAllowedDistanceBeforeBanking = 5.0;
 
-        boolean hasReachedBank = MovingUtility.GoToLocation(maximumAllowedDistanceBeforeBanking, bankCenterTile);
+        boolean hasReachedBank = MovingUtility.GoToLocation(LocationManager.allowedDistanceFromBank, bankCenterTile);
 
 
         if (hasReachedBank) {
@@ -35,6 +34,7 @@ public class Banking extends Node{
                 Sleep.sleep(500, 1200);
                 depositItems();
                 BankManagerSystem.withdrawBasedOnTaskMadeEasy();
+                BankManagerSystem.checkForDuplicatesAndDepositThem();
             }
         }
 
