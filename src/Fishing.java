@@ -9,7 +9,11 @@ public class Fishing extends Node{
     @Override
     public void execute(){
         double allowedDistanceFromFishingSpot = LocationManager.maximumAllowedDistanceForFishingTask(TaskTypeUtility.decideTaskType());
-        MovingUtility.GoToLocation(allowedDistanceFromFishingSpot, LocationManager.decideWhereToFish());
+        if(MovingUtility.GoToLocation(allowedDistanceFromFishingSpot, LocationManager.decideWhereToFish())){
+            if (FishingManager.doIHaveAllToolsNeeded(TaskTypeUtility.decideTaskType())){
+
+            }
+        }
 
     }
 }
