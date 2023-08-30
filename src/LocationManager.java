@@ -75,5 +75,11 @@ public class LocationManager {
         return allBankLocations[minIndex];
     }
 
+    public static boolean isAtLocation(){
+        Tile shouldFishAt = decideWhereToFish();
+
+        if
+    }
+
 
 }
